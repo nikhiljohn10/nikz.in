@@ -1,0 +1,39 @@
+{
+  apps: [
+
+    {
+      name: "nikz-proc",
+      script: "./bin/www",
+      env: {
+        COMMON_VARIABLE: "true",
+        PORT: 4000,
+        DEBUG: "nikz_in:*"
+      },
+      env_production: {
+        NODE_ENV: "production"
+      }
+    }
+  ],
+  deploy: {
+    production: {
+      user: "book",
+      host: "164.132.195.34",
+      ref: "origin/master",
+      repo: "https://github.com/nikhiljohn10/nikz.in.git",
+      path: "/var/www/nikz.in/production",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env production"
+    },
+    dev: {
+      user: "node",
+      host: "127.0.0.1",
+      port: "4000",
+      ref: "origin/master",
+      repo: "https://github.com/nikhiljohn10/nikz.in.git",
+      path: "/var/www/development",
+      "post-deploy": "npm install && pm2 startOrRestart ecosystem.json --env dev",
+      env: {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}

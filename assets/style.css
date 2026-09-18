@@ -105,14 +105,14 @@ img { max-width: 100%; height: auto; display: block; }
 .top nav a[aria-current="true"] { box-shadow: 0 1px 0 var(--accent); }
 
 /* ── Hero ────────────────────────────────────────────── */
-.hero {
+.hero { border-bottom: 1px solid var(--line); }
+.hero-pin {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   align-items: center;
   gap: clamp(1.5rem, 5vw, 5rem);
   min-height: calc(100svh - 3.2rem);
   padding: clamp(2rem, 6vw, 5rem) var(--gutter);
-  border-bottom: 1px solid var(--line);
 }
 .hero h1 {
   font: 200 clamp(3.2rem, 10.5vw, 10rem)/1 var(--display);
@@ -247,6 +247,10 @@ img { max-width: 100%; height: auto; display: block; }
 .repo-meta { white-space: nowrap; text-align: right; }
 .stars:not(:empty)::before { content: "· ★ "; }
 .more { margin-top: 1.6rem; font: 400 0.8rem var(--mono); letter-spacing: 0.04em; }
+.aside-note {
+  margin-top: 2.6rem; padding-top: 1.1rem; border-top: 1px solid var(--line);
+  max-width: var(--measure); color: var(--ink-2); font-size: 0.9rem;
+}
 
 /* Now */
 .now .big { max-width: 22ch; }
@@ -277,13 +281,35 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 1.6rem var(--gutter) 2.4rem;
 }
 
-/* Reveal on scroll (only when JS has opted in) */
-.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.js .reveal.in { opacity: 1; transform: none; }
+/* 3D entrances swing a little past the page edge; clip them without creating a scroll container
+   (overflow: hidden here would break the sticky section headings). */
+main { overflow-x: clip; }
+
+/* ── The scene: a fixed WebGL layer behind everything ── */
+.scene {
+  position: fixed; inset: 0; z-index: -1;
+  width: 100%; height: 100vh; height: 100lvh;
+  display: block; pointer-events: none;
+}
+.webgl .stone { visibility: hidden; }            /* the 3D stone takes the flat one's place, not its space */
+.webgl .card { background: color-mix(in srgb, var(--paper-2) 86%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+
+/* Scroll-driven entrances are written inline by main.js; these are the fixed parts */
+.enter { transform-origin: 50% 100%; backface-visibility: hidden; }
+.links > .enter { transform-origin: 0 50%; }
+.card.enter { transform-origin: 100% 50%; }
+.hero-text { transform-origin: 0 60%; will-change: transform, opacity; }
+@media (prefers-reduced-motion: no-preference) { .js .banner img { transform: scale(1.22); will-change: transform; } }
+
+/* Scroll progress, along the bottom edge of the top bar */
+.progress {
+  position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: var(--accent); transform: scaleX(0); transform-origin: 0 50%;
+}
 
 /* ── Smaller screens ─────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 2.5rem; }
+  .hero-pin { grid-template-columns: 1fr; min-height: 0; padding-top: 2.5rem; }
   .hero-stone { order: -1; width: min(78vw, 420px); }
   .block { grid-template-columns: 1fr; }
   .block > :not(.block-head) { grid-column: 1; }
@@ -300,13 +326,14 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 520px) {
-  .top nav a:nth-child(3), .top nav a:nth-child(4) { display: none; }
+  .top { gap: 0.6rem; }
+  .top nav { gap: 0.7rem; }
+  .top nav a { font-size: 0.62rem; letter-spacing: 0.05em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .js .reveal { opacity: 1; transform: none; }
 }
 
 @media print {

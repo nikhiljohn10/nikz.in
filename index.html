@@ -33,7 +33,7 @@
     "jobTitle": "Partner",
     "worksFor": { "@type": "Organization", "name": "Jwala Diamonds & Jewellers", "url": "https://jwala.diamonds/" },
     "address": { "@type": "PostalAddress", "addressLocality": "Thrissur", "addressRegion": "Kerala", "addressCountry": "IN" },
-    "knowsAbout": ["Gemology", "Diamonds", "Jewellery manufacturing", "Software engineering"],
+    "knowsAbout": ["Gemology", "Diamonds", "Jewellery manufacturing", "Software engineering", "Go programming language"],
     "sameAs": [
       "https://www.linkedin.com/in/nikzjon",
       "https://github.com/nikhiljohn10",
@@ -51,16 +51,18 @@
     <a class="mark" href="#" aria-label="Nikhil John, top of page">NJ</a>
     <nav aria-label="Sections">
       <a href="#profile">Profile</a>
-      <a href="#practice">Practice</a>
+      <a href="#passion">Passion</a>
       <a href="#code">Code</a>
-      <a href="#now">Now</a>
-      <a href="#elsewhere">Elsewhere</a>
+      <a href="#upcoming">Upcoming</a>
+      <a href="#follow">Follow</a>
     </nav>
+    <span class="progress" aria-hidden="true"></span>
   </header>
 
   <main>
     <!-- ───────────── Hero ───────────── -->
     <section class="hero">
+      <div class="hero-pin">
       <div class="hero-text">
         <p class="label">Thrissur, Kerala &nbsp;·&nbsp; 10.52° N, 76.21° E</p>
         <h1>Nikhil<br>John</h1>
@@ -108,6 +110,7 @@
         </svg>
         <figcaption class="label">Fig. 1 — Round brilliant, crown view. 33 facets.</figcaption>
       </figure>
+      </div>
     </section>
 
     <!-- ───────────── Banner (optional: delete this <figure> to remove it) ───────────── -->
@@ -145,11 +148,11 @@
       </div>
     </section>
 
-    <!-- ───────────── 02 Practice ───────────── -->
-    <section id="practice" class="block">
+    <!-- ───────────── 02 Passion ───────────── -->
+    <section id="passion" class="block">
       <header class="block-head">
         <span class="label">02</span>
-        <h2>Practice</h2>
+        <h2>Passion</h2>
       </header>
       <ol class="facets">
         <li>
@@ -183,63 +186,99 @@
     <section id="code" class="block">
       <header class="block-head">
         <span class="label">03</span>
-        <h2>Open source</h2>
+        <h2>Code</h2>
       </header>
       <ul class="repos">
         <li>
-          <a href="https://github.com/nikhiljohn10/telegram-bot-worker" rel="noopener">
-            <span class="repo-name">telegram-bot-worker</span>
-            <span class="repo-desc">A generic Telegram bot that runs on Cloudflare Workers.</span>
-            <span class="repo-meta label">JavaScript <span class="stars" data-repo="telegram-bot-worker"></span></span>
+          <a href="https://github.com/goozt/goscon" rel="noopener">
+            <span class="repo-name">goscon</span>
+            <span class="repo-desc">Turns a bank statement PDF into structured, machine-readable data.</span>
+            <span class="repo-meta label">Go</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/goozt/goupdate" rel="noopener">
+            <span class="repo-name">goupdate</span>
+            <span class="repo-desc">Gives a compiled Go binary the ability to update itself.</span>
+            <span class="repo-meta label">Go</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/goozt/gospeed" rel="noopener">
+            <span class="repo-name">gospeed</span>
+            <span class="repo-desc">Network speed testing, client and server, with no dependencies.</span>
+            <span class="repo-meta label">Go</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/goozt/seashell" rel="noopener">
+            <span class="repo-name">seashell</span>
+            <span class="repo-desc">A small cryptocurrency and wallet on a proof-of-authority chain.</span>
+            <span class="repo-meta label">Go</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/goozt/goca" rel="noopener">
+            <span class="repo-name">goca</span>
+            <span class="repo-desc">An API server for distributing private CA certificates.</span>
+            <span class="repo-meta label">Go</span>
           </a>
         </li>
         <li>
           <a href="https://github.com/nikhiljohn10/pi-clap" rel="noopener">
             <span class="repo-name">pi-clap</span>
             <span class="repo-desc">Clap detection for the Raspberry Pi, as a Python package.</span>
-            <span class="repo-meta label">Python <span class="stars" data-repo="pi-clap"></span></span>
+            <span class="repo-meta label">Python</span>
           </a>
         </li>
         <li>
-          <a href="https://github.com/nikhiljohn10/ddns-on-cloudflare" rel="noopener">
-            <span class="repo-name">ddns-on-cloudflare</span>
-            <span class="repo-desc">Dynamic DNS on top of Cloudflare.</span>
-            <span class="repo-meta label">Python <span class="stars" data-repo="ddns-on-cloudflare"></span></span>
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/nikhiljohn10/api-worker-template" rel="noopener">
-            <span class="repo-name">api-worker-template</span>
-            <span class="repo-desc">A starting point for API services on Cloudflare Workers with Wrangler.</span>
-            <span class="repo-meta label">JavaScript <span class="stars" data-repo="api-worker-template"></span></span>
+          <a href="https://github.com/nikhiljohn10/ddnslab" rel="noopener">
+            <span class="repo-name">ddnslab</span>
+            <span class="repo-desc">Dynamic DNS for Cloudflare, running as a Worker API.</span>
+            <span class="repo-meta label">JavaScript</span>
           </a>
         </li>
         <li>
           <a href="https://github.com/nikhiljohn10/scapy" rel="noopener">
             <span class="repo-name">scapy</span>
             <span class="repo-desc">Step CA Python manager, for running a private certificate authority.</span>
-            <span class="repo-meta label">Python <span class="stars" data-repo="scapy"></span></span>
+            <span class="repo-meta label">Python</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/nikhiljohn10/telegram-bot-worker" rel="noopener">
+            <span class="repo-name">telegram-bot-worker</span>
+            <span class="repo-desc">A generic Telegram bot that runs on Cloudflare Workers.</span>
+            <span class="repo-meta label">JavaScript</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/nikhiljohn10/envlock" rel="noopener">
+            <span class="repo-name">envlock</span>
+            <span class="repo-desc">Encrypts, rotates and shreds secrets files from the command line.</span>
+            <span class="repo-meta label">Python</span>
           </a>
         </li>
       </ul>
       <p class="more"><a href="https://github.com/nikhiljohn10" rel="noopener">Everything else on GitHub&nbsp;→</a></p>
+      <p class="aside-note">The Go tools above sit under <a href="https://goozt.org/" rel="noopener">goozt</a>, a GitHub organisation I use to keep them together and to publish them through Homebrew and Scoop.</p>
     </section>
 
-    <!-- ───────────── 04 Now ───────────── -->
-    <section id="now" class="block now">
+    <!-- ───────────── 04 Upcoming ───────────── -->
+    <section id="upcoming" class="block now">
       <header class="block-head">
         <span class="label">04</span>
-        <h2>Now</h2>
+        <h2>Upcoming</h2>
       </header>
       <p class="big">Working on something new in Thrissur — a jewellery design studio.</p>
       <p class="label">More when it is ready.</p>
     </section>
 
-    <!-- ───────────── 05 Elsewhere ───────────── -->
-    <section id="elsewhere" class="block">
+    <!-- ───────────── 05 Follow ───────────── -->
+    <section id="follow" class="block">
       <header class="block-head">
         <span class="label">05</span>
-        <h2>Elsewhere</h2>
+        <h2>Follow</h2>
       </header>
       <ul class="links">
         <li><a href="https://www.linkedin.com/in/nikzjon" rel="me noopener"><span>LinkedIn</span><span class="label">in/nikzjon</span></a></li>
@@ -252,7 +291,7 @@
 
   <footer class="foot">
     <p class="label">© <span id="year">2026</span> Nikhil John · Thrissur</p>
-    <p class="label">Set in Jost &amp; Hanken Grotesk · No cookies, no trackers</p>
+    <p class="label">Make with Love · No cookies · no trackers</p>
   </footer>
 
   <script src="assets/main.js" defer></script>

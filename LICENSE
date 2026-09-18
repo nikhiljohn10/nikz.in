@@ -1,6 +1,14 @@
+This repository contains two different things under two different terms.
+
+────────────────────────────────────────────────────────────────────────
+1. CODE — MIT Licence
+────────────────────────────────────────────────────────────────────────
+Applies to the HTML, CSS, JavaScript and Python in this repository
+(index.html, 404.html, assets/style.css, assets/main.js, tools/).
+
 The MIT License (MIT)
 
-Copyright (c) 2016 Nikz Jon
+Copyright (c) 2016-2026 Nikhil John
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,3 +28,24 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+────────────────────────────────────────────────────────────────────────
+2. CONTENT — All rights reserved
+────────────────────────────────────────────────────────────────────────
+Applies to the written text of the site, the photographs and images in
+assets/ (including the portrait, which is a likeness of a living person),
+and llms.txt.
+
+Copyright (c) 2026 Nikhil John. All rights reserved. Not licensed for reuse,
+redistribution or modification without written permission.
+
+────────────────────────────────────────────────────────────────────────
+3. THIRD-PARTY FONTS
+────────────────────────────────────────────────────────────────────────
+The files in assets/fonts/ are not covered by either of the above. They are
+redistributed under the SIL Open Font License, Version 1.1:
+
+  Jost           © 2020 The Jost Project Authors
+  Hanken Grotesk © 2020 The Hanken Grotesk Project Authors
+  IBM Plex Mono  © 2017 IBM Corp.
+
+Full licence text: https://scripts.sil.org/OFL

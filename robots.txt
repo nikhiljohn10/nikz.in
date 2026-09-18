@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Plain-text summary for language models and AI assistants:
+# https://nikz.in/llms.txt
+
+Sitemap: https://nikz.in/sitemap.xml

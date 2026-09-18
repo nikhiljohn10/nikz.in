@@ -1,0 +1,315 @@
+/* nikz.in — plain CSS, no build step.
+   Tokens first; light is the default, dark follows the visitor's system. */
+
+/* Self-hosted, SIL Open Font License. Latin subset. */
+@font-face { font-family: "Jost"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("fonts/jost-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Jost"; font-style: italic; font-weight: 100 900; font-display: swap; src: url("fonts/jost-latin-wght-italic.woff2") format("woff2"); }
+@font-face { font-family: "Hanken Grotesk"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+
+:root {
+  /* Dark is the design. Visitors whose system is set to light get the
+     same palette lifted a few steps (see the media query below). */
+  --paper: #100f0d;
+  --paper-2: #181613;
+  --ink: #ece7dc;
+  --ink-2: #a39d90;
+  --line: rgba(236, 231, 220, 0.16);
+  --line-strong: rgba(236, 231, 220, 0.6);
+  --accent: #d4718a;                  /* claret — anything that must be read */
+  --accent-deep: #7d2b3d;             /* wine — solid fills only, never text */
+  --facet-hi: 236, 231, 220;          /* rgb of the facet glint */
+
+  --display: "Jost", "Futura", "Century Gothic", ui-sans-serif, system-ui, sans-serif;
+  --sans: "Hanken Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Consolas, monospace;
+
+  --gutter: clamp(16px, 4vw, 56px);
+  --measure: 62ch;
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --paper: #23211d;
+    --paper-2: #2c2a25;
+    --ink: #f1ece2;
+    --ink-2: #b4aea1;
+    --line: rgba(241, 236, 226, 0.17);
+    --line-strong: rgba(241, 236, 226, 0.6);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.0625rem/1.65 var(--sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent-deep); color: var(--ink); }
+
+a { color: inherit; text-decoration-color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--accent); }
+a:focus-visible, .skip:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+h1, h2, h3, p, ol, ul, dl, dd, figure { margin: 0; padding: 0; }
+ol, ul { list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+.label {
+  font: 400 0.72rem/1.4 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.skip {
+  position: absolute; left: var(--gutter); top: -4rem;
+  background: var(--accent-deep); color: var(--ink); padding: 0.5rem 0.9rem; z-index: 10;
+  font: 400 0.8rem var(--mono);
+}
+.skip:focus { top: 0.75rem; }
+
+/* ── Top bar ─────────────────────────────────────────── */
+.top {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.85rem var(--gutter);
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.mark {
+  font: 500 1rem/1 var(--display);
+  text-decoration: none;
+  letter-spacing: 0.32em;
+}
+.top nav { display: flex; gap: clamp(0.8rem, 2.4vw, 1.9rem); overflow-x: auto; scrollbar-width: none; }
+.top nav::-webkit-scrollbar { display: none; }
+.top nav a {
+  font: 400 0.72rem/1 var(--mono);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-2); white-space: nowrap;
+  padding: 0.45rem 0;
+}
+.top nav a:hover, .top nav a[aria-current="true"] { color: var(--ink); }
+.top nav a[aria-current="true"] { box-shadow: 0 1px 0 var(--accent); }
+
+/* ── Hero ────────────────────────────────────────────── */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  min-height: calc(100svh - 3.2rem);
+  padding: clamp(2rem, 6vw, 5rem) var(--gutter);
+  border-bottom: 1px solid var(--line);
+}
+.hero h1 {
+  font: 200 clamp(3.2rem, 10.5vw, 10rem)/1 var(--display);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 1.4rem 0 2rem -0.05em;
+}
+.lede {
+  font: 300 clamp(1.2rem, 2vw, 1.6rem)/1.45 var(--display);
+  max-width: 32ch;
+  color: var(--ink);
+}
+.lede em { font-style: italic; font-weight: 400; color: var(--accent); }
+
+.hero-stone { justify-self: center; width: min(100%, 560px); text-align: center; }
+.hero-stone figcaption { margin-top: 1.1rem; }
+
+.stone { width: 100%; height: auto; overflow: visible; display: block; }
+.stone .f {
+  fill: rgb(var(--facet-hi));
+  fill-opacity: var(--l, 0);
+  stroke: var(--ink);
+  stroke-width: 0.55;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.stone .stone-girdle { fill: none; stroke: var(--ink); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.stone .stone-ticks line { stroke: var(--ink-2); stroke-width: 0.6; vector-effect: non-scaling-stroke; opacity: 0.7; }
+.stone .stone-ticks line:nth-child(9n + 1) { stroke: var(--accent); opacity: 1; }
+
+/* ── Banner ──────────────────────────────────────────── */
+.banner {
+  position: relative; overflow: hidden;
+  height: clamp(200px, 36vw, 520px);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-2);
+}
+.banner img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 55%; filter: brightness(0.82) saturate(0.92) contrast(1.04); }
+.banner::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(90deg, var(--paper) 0%, color-mix(in srgb, var(--paper) 55%, transparent) 28%, transparent 58%),
+    linear-gradient(0deg, color-mix(in srgb, var(--paper) 70%, transparent) 0%, transparent 35%),
+    linear-gradient(90deg, color-mix(in srgb, var(--accent-deep) 22%, transparent) 0%, transparent 45%);
+}
+.banner figcaption { position: absolute; left: var(--gutter); bottom: 1.1rem; z-index: 1; color: var(--ink); }
+
+/* ── Blocks ──────────────────────────────────────────── */
+.block {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) minmax(0, 4fr);
+  column-gap: clamp(1.5rem, 4vw, 4rem);
+  padding: clamp(3.5rem, 9vw, 8rem) var(--gutter);
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 3rem;
+}
+.block > :not(.block-head) { grid-column: 2; }
+.block-head { grid-column: 1; grid-row: 1 / span 9; align-self: start; position: sticky; top: 5rem; }
+.block-head h2 { font: 300 clamp(1.5rem, 2.4vw, 2rem)/1.1 var(--display); letter-spacing: 0.01em; margin-top: 0.5rem; }
+
+.big {
+  font: 300 clamp(1.45rem, 2.7vw, 2.3rem)/1.3 var(--display);
+  letter-spacing: 0;
+  max-width: 26ch;
+}
+.prose p + p { margin-top: 1.15em; }
+.prose p:not(.big) { max-width: var(--measure); color: var(--ink-2); }
+.prose .big { max-width: 24ch; margin-bottom: 1.6rem; }
+.prose a { color: var(--ink); }
+.prose a:hover { color: var(--accent); }
+
+/* Profile + particulars card */
+.profile {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(16rem, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+.card {
+  border: 1px solid var(--line-strong);
+  padding: 0.9rem;
+  background: var(--paper-2);
+  position: relative;
+}
+.card::before {
+  content: "Particulars";
+  position: absolute; top: -0.62rem; left: 0.8rem;
+  padding: 0 0.45rem; background: var(--paper);
+  font: 400 0.68rem/1.2 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent);
+}
+.portrait {
+  width: 100%; aspect-ratio: 4 / 5; object-fit: cover;
+  object-position: 50% 20%;
+  filter: saturate(0.9);
+}
+.spec { margin-top: 0.6rem; }
+.spec > div {
+  display: grid; grid-template-columns: 6.2rem minmax(0, 1fr); gap: 0.75rem;
+  padding: 0.55rem 0.1rem; border-top: 1px solid var(--line);
+}
+.spec dt { font: 400 0.68rem/1.55 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); padding-top: 0.12rem; }
+.spec dd { font-size: 0.93rem; line-height: 1.4; }
+
+/* Practice */
+.facets {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-strong);
+}
+.facets li { padding: 1.4rem clamp(1rem, 2vw, 2rem) 0.5rem 0; }
+.facets li + li { padding-left: clamp(1rem, 2vw, 2rem); border-left: 1px solid var(--line); }
+.facets h3 { font: 400 clamp(1.35rem, 2vw, 1.7rem)/1.15 var(--display); margin: 0.9rem 0 0.8rem; }
+.facets p { color: var(--ink-2); font-size: 0.98rem; }
+
+.frames { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 3.5rem; }
+.frames img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.frames figcaption { margin-top: 0.5rem; }
+
+/* Repos */
+.repos { border-top: 1px solid var(--line-strong); }
+.repos a {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 2fr) auto;
+  align-items: baseline; gap: 0.4rem 2rem;
+  padding: 1.15rem 0.1rem; border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  transition: padding 0.25s ease, color 0.2s ease;
+}
+.repos a:hover { padding-left: 0.7rem; }
+.repo-name { font: 400 1.02rem/1.3 var(--mono); letter-spacing: -0.01em; }
+.repo-desc { color: var(--ink-2); font-size: 0.96rem; }
+.repos a:hover .repo-desc { color: var(--ink); }
+.repo-meta { white-space: nowrap; text-align: right; }
+.stars:not(:empty)::before { content: "· ★ "; }
+.more { margin-top: 1.6rem; font: 400 0.8rem var(--mono); letter-spacing: 0.04em; }
+
+/* Now */
+.now .big { max-width: 22ch; }
+.now .big + .label { margin-top: 1.4rem; }
+.now .big + .label::before {
+  content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; margin-right: 0.6rem;
+  border-radius: 50%; background: var(--accent); vertical-align: 0.02em;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 50% { opacity: 0.25; } }
+
+/* Links */
+.links { border-top: 1px solid var(--line-strong); }
+.links a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  padding: 0.9rem 0.1rem; border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  font: 200 clamp(1.7rem, 4.4vw, 3.2rem)/1.15 var(--display);
+  letter-spacing: 0.05em; text-transform: uppercase;
+  transition: padding 0.25s ease;
+}
+.links a:hover { padding-left: 0.7rem; }
+.links a:hover .label { color: var(--accent); }
+
+/* Footer */
+.foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 2rem;
+  padding: 1.6rem var(--gutter) 2.4rem;
+}
+
+/* Reveal on scroll (only when JS has opted in) */
+.js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* ── Smaller screens ─────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 2.5rem; }
+  .hero-stone { order: -1; width: min(78vw, 420px); }
+  .block { grid-template-columns: 1fr; }
+  .block > :not(.block-head) { grid-column: 1; }
+  .block-head { position: static; grid-row: auto; display: flex; align-items: baseline; gap: 0.9rem; margin-bottom: 2rem; }
+  .block-head h2 { margin-top: 0; }
+  .profile { grid-template-columns: 1fr; }
+  .card { max-width: 24rem; }
+  .facets { grid-template-columns: 1fr; }
+  .facets li, .facets li + li { padding: 1.4rem 0 1.6rem; border-left: 0; }
+  .facets li + li { border-top: 1px solid var(--line); }
+  .repos a { grid-template-columns: 1fr; gap: 0.25rem; }
+  .repo-meta { text-align: left; margin-top: 0.3rem; }
+  .frames { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 520px) {
+  .top nav a:nth-child(3), .top nav a:nth-child(4) { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
+
+@media print {
+  .top, .hero-stone, .banner { display: none; }
+  .block { padding: 1.5rem 0; }
+}
